@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@layer utilities {
+  /* CTA bounce (button) */
+  @keyframes cta-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    60% {
+      transform: translateY(0);
+    }
+    70% {
+      transform: translateY(-4px);
+    }
+    80% {
+      transform: translateY(0);
+    }
+    90% {
+      transform: translateY(-2px);
+    }
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.9s ease;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

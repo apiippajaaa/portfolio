@@ -1,0 +1,425 @@
+.space-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.95;
+  filter: blur(90px);
+
+  background: radial-gradient(
+      1200px circle at 50% -10%,
+      rgba(96, 165, 250, 0.08),
+      rgba(59, 130, 246, 0.03) 35%,
+      transparent 65%
+    ),
+    radial-gradient(
+      900px circle at 70% 20%,
+      rgba(59, 130, 246, 0.1),
+      rgba(59, 130, 246, 0.04) 40%,
+      transparent 70%
+    ),
+    radial-gradient(
+      700px circle at 25% 75%,
+      rgba(59, 130, 246, 0.06),
+      transparent 70%
+    );
+}
+
+/* Dust particles (far depth) */
+.space-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+
+  background-image: radial-gradient(
+      rgba(255, 255, 255, 0.5) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(rgba(147, 197, 253, 0.4) 0.5px, transparent 0.5px);
+
+  background-size: 3px 3px, 4px 4px;
+  background-position: 0 0, 40px 60px;
+}
+
+/* Distant stars */
+.space-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+
+  background-image: radial-gradient(
+      rgba(255, 255, 255, 0.8) 1px,
+      transparent 1px
+    ),
+    radial-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+
+  background-size: 5px 5px, 9px 9px;
+  background-position: 0 0, 40px 60px;
+}
+
+.space-cloud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.6;
+  filter: blur(120px);
+
+  background: radial-gradient(
+      600px circle at 20% 15%,
+      rgba(96, 165, 250, 0.05),
+      transparent 70%
+    ),
+    radial-gradient(
+      800px circle at 80% 35%,
+      rgba(147, 197, 253, 0.04),
+      transparent 75%
+    );
+}
+
+/* =========================================================
+     3. FUTURISTIC GRID (SUBTLE)
+     ========================================================= */
+
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image: linear-gradient(
+      rgba(96, 165, 250, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.05) 1px, transparent 1px);
+
+  background-size: 90px 90px;
+
+  mask-image: radial-gradient(
+    circle at 70% 20%,
+    black 20%,
+    rgba(0, 0, 0, 0.6) 45%,
+    transparent 85%
+  );
+}
+
+/* =========================================================
+     4. CINEMATIC LIGHT SOURCE
+     ========================================================= */
+
+.lens-flare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.lens-flare::before {
+  content: "";
+  position: absolute;
+  top: 18%;
+  left: 70%;
+  width: 700px;
+  height: 700px;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+  filter: blur(60px);
+
+  background: radial-gradient(
+    circle,
+    rgba(96, 165, 250, 0.18),
+    rgba(96, 165, 250, 0.08) 30%,
+    rgba(96, 165, 250, 0.03) 55%,
+    transparent 75%
+  );
+
+  animation: glowPulse 12s ease-in-out infinite;
+}
+
+/* =========================================================
+     5. DRIFTING STARS
+     Multiple depth layers
+     ========================================================= */
+
+.drift-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  border-radius: 999px;
+  background: white;
+  will-change: transform;
+}
+
+/* depth variants */
+.star.small {
+  width: 1px;
+  height: 1px;
+  opacity: 0.35;
+  animation: driftSlow linear infinite;
+}
+
+.star.medium {
+  width: 2px;
+  height: 2px;
+  opacity: 0.6;
+  animation: driftMedium linear infinite;
+}
+
+.star.big {
+  width: 3px;
+  height: 3px;
+  opacity: 0.9;
+  box-shadow: 0 0 6px rgba(147, 197, 253, 0.6);
+  animation: driftFast linear infinite;
+}
+
+/* star motion */
+@keyframes driftSlow {
+  to {
+    transform: translateY(80px);
+  }
+}
+@keyframes driftMedium {
+  to {
+    transform: translateY(140px);
+  }
+}
+@keyframes driftFast {
+  to {
+    transform: translateY(220px);
+  }
+}
+
+/* =========================================================
+     6. APPLE-STYLE GRADIENT TEXT
+     ========================================================= */
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #93c5fd 40%,
+    #60a5fa 60%,
+    #ffffff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================================
+     7. REVEAL ANIMATION
+     ========================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+     8. AMBIENT GLOW ANIMATION
+     ========================================================= */
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+/* =========================================================
+     9. SCROLL SNAP SYSTEM
+     ========================================================= */
+
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.snap-section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* =========================================================
+     10. APPLE-STYLE ACCENT LINE
+     ========================================================= */
+
+.apple-line {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2.5px;
+  overflow: hidden;
+}
+
+.apple-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 60%;
+  opacity: 0.7;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(96, 165, 250, 0.8),
+    transparent
+  );
+
+  animation: appleLineMove 5s ease-in-out infinite;
+}
+
+@keyframes appleLineMove {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(220%);
+    opacity: 0;
+  }
+}
+
+/* =========================================================== */
+/* =========================================================== */
+@keyframes scroll-dot {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  25% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, 14px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 18px);
+  }
+}
+
+.animate-scroll-dot {
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+/* =========================================================== */
+:root {
+  --scroll-color: #ffffff;
+  --scroll-size-x: 22px;
+  --scroll-size-y: 36px;
+  --scroll-border-width: 2px;
+  --scroll-dot-size: 4px;
+  --scroll-animation-duration: 2.2s;
+}
+
+/* Container */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0.6;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.scroll-indicator.is-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+  pointer-events: none;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+}
+
+/* Mouse shape */
+.scroll-indicator__mouse {
+  position: relative;
+  width: var(--scroll-size-x);
+  height: var(--scroll-size-y);
+  border: var(--scroll-border-width) solid var(--scroll-color);
+  border-radius: 999px;
+  box-sizing: border-box;
+}
+
+/* Dot animation */
+.scroll-indicator__mouse::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: var(--scroll-dot-size);
+  height: var(--scroll-dot-size);
+  background: var(--scroll-color);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: scroll-dot var(--scroll-animation-duration) infinite;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Text */
+.scroll-indicator__text {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--scroll-color);
+  font-weight: 300;
+}
+
+/* Animation */
+@keyframes scroll-dot {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 14px);
+  }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-indicator__mouse::before {
+    animation: none;
+  }
+}
+.section-hero {
+  position: relative;
+}
+
+.carousel-track {
+  transition: transform 0.4s ease;
+}
